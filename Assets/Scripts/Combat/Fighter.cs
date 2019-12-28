@@ -18,6 +18,7 @@ namespace RPG.Combat {
         Mover mover;
 
         string ANIMATOR_PARAMETER_TRIGGER_ATTACK = "attack";
+        string ANIMATOR_PARAMETER_TRIGGER_STOP_ATTACK = "stopAttack";
 
         void Start()
         {
@@ -30,6 +31,7 @@ namespace RPG.Combat {
             timeSinceLastAttack += Time.deltaTime;
 
             if (target == null) return;
+            if (target.GetComponent<Health>().IsDead()) return;
 
             if (!GetIsInRange())
             {
@@ -44,18 +46,37 @@ namespace RPG.Combat {
 
         private void AttackBehaviour()
         {
-            if (timeSinceLastAttack > timeBetweenAttacks) { 
-                // This will trigger the Hit() event
-                animator.SetTrigger(ANIMATOR_PARAMETER_TRIGGER_ATTACK);
+            // Look at target
+            transform.LookAt(target);
+
+            if (timeSinceLastAttack > timeBetweenAttacks) {
+                TriggerAttack();
 
                 // Reset timer
                 timeSinceLastAttack = 0f;
             }
         }
 
+        private void TriggerAttack()
+        {
+            // This will trigger the Hit() event
+            animator.ResetTrigger(ANIMATOR_PARAMETER_TRIGGER_STOP_ATTACK);
+            animator.SetTrigger(ANIMATOR_PARAMETER_TRIGGER_ATTACK);
+        }
+        private void TriggerStopAttack()
+        {
+            animator.ResetTrigger(ANIMATOR_PARAMETER_TRIGGER_ATTACK);
+            animator.SetTrigger(ANIMATOR_PARAMETER_TRIGGER_STOP_ATTACK);
+        }
+
         // Animation Event
         void Hit()
         {
+            if (target == null)
+            {
+                return;
+            }
+
             Health targetHealth = target.gameObject.GetComponent<Health>();
             targetHealth.TakeDamage(weaponDamage);
         }
@@ -63,6 +84,18 @@ namespace RPG.Combat {
         private bool GetIsInRange()
         {
             return Vector3.Distance(transform.position, target.position) < weaponRange;
+        }
+
+        public bool CanAttack(CombatTarget combatTarget)
+        {
+            if (combatTarget == null)
+            {
+                return false;
+            }
+
+            Health targetHealth = combatTarget.GetComponent<Health>();
+
+            return targetHealth != null && !targetHealth.IsDead();
         }
 
         public void Attack(CombatTarget combatTarget)
@@ -73,6 +106,7 @@ namespace RPG.Combat {
 
         public void Cancel()
         {
+            TriggerStopAttack();
             target = null;
         }
     }

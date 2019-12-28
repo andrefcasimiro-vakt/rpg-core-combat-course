@@ -18,7 +18,6 @@ namespace RPG.Control
         {
             if (InteractWithCombat()) return;
             if (InteractWithMovement()) return;
-            print("Hei");
         }
 
         bool InteractWithCombat()
@@ -29,6 +28,12 @@ namespace RPG.Control
             {
                 CombatTarget target = hit.transform.gameObject.GetComponent<CombatTarget>();
                 if (target == null) continue;
+
+                // Can we attack this target?
+                if (!GetComponent<Fighter>().CanAttack(target))
+                {
+                    continue;
+                }
 
                 if (Input.GetMouseButtonDown(0))
                 {
