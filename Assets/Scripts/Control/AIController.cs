@@ -9,9 +9,16 @@ namespace RPG.Control
 {
     public class AIController : MonoBehaviour
     {
+        [Header("Movement Settings")]
+        [Range(0, 1)]
+        [SerializeField] float patrolSpeedFraction = 0.2f;
+
+        [Header("Chasing Settings")]
         [SerializeField] float chaseDistance = 5f;
         [SerializeField] float suspicionTime = 3f;
 
+
+        [Header("Waypoint Settings")]
         [SerializeField] PatrolPath patrolPath = null;
         [SerializeField] float waypointTolerance = 1f;
         [SerializeField] float waypointDwellTime = 3f;
@@ -25,6 +32,7 @@ namespace RPG.Control
         Vector3 guardPosition;
         int currentWaypointIndex = 0;
 
+        // Timers
         float timeSinceLastSawPlayer = Mathf.Infinity;
         float timeSinceArrivedAtWaypoint = Mathf.Infinity;
 
@@ -94,7 +102,7 @@ namespace RPG.Control
 
             if (timeSinceArrivedAtWaypoint > waypointDwellTime) { 
                 // Return to the original position
-                GetComponent<Mover>().MoveTo(nextPosition);
+                GetComponent<Mover>().StartMoveAction(nextPosition, patrolSpeedFraction);
             }
         }
 
