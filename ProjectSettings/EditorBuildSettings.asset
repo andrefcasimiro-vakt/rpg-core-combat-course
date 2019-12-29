@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 1/LEVEL 1 - Guard Village.unity
+    guid: 748572b6ef3d813428e5de992b0124a1
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 2/LEVEL 2 - Mountains.unity
+    guid: aa5accc1eaf37704586b1c1096f44836
   m_configObjects: {}
