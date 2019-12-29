@@ -12,14 +12,18 @@ namespace RPG.Movement
     {
         string ANIMATOR_PARAMETER_FORWARD_SPEED = "forwardSpeed";
         NavMeshAgent navMeshAgent;
+        Health health;
 
         void Start()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
+            health = GetComponent<Health>();
         }
 
         void Update() 
         {
+            navMeshAgent.enabled = !health.IsDead();
+
             UpdateAnimator();
         }
 
