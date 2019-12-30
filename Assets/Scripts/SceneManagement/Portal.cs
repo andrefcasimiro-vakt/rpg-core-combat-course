@@ -21,10 +21,12 @@ namespace RPG.SceneManagement
         public float fadeTimeBetweenScenes = 0.25f;
 
         Fader fader;
+        SavingWrapper savingWrapper;
 
         private void Start()
         {
             fader = FindObjectOfType<Fader>();
+            savingWrapper = FindObjectOfType<SavingWrapper>();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -43,11 +45,20 @@ namespace RPG.SceneManagement
             // Fade Out
             yield return fader.FadeOut(fadeTimeBetweenScenes);
 
+            // Save current level state
+            savingWrapper.SaveMethod();
+
             // Load Async
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
 
+            // Load next level state
+            savingWrapper.LoadMethod();
+
             // Update player position based on future portal spawnpoint
             UpdatePlayer(GetOtherPortal());
+
+            // Save as a checkpoint
+            savingWrapper.SaveMethod();
 
             // Fade In
             yield return fader.FadeIn(fadeTimeBetweenScenes);
@@ -60,8 +71,10 @@ namespace RPG.SceneManagement
         {
             GameObject player = GameObject.FindWithTag("Player");
 
-            player.GetComponent<NavMeshAgent>().Warp(otherPortal.spawnPoint.position);
+            player.GetComponent<NavMeshAgent>().enabled = false;
+            player.transform.position = otherPortal.spawnPoint.position;
             player.transform.rotation = otherPortal.spawnPoint.rotation;
+            player.GetComponent<NavMeshAgent>().enabled = true;
         }
 
         Portal GetOtherPortal()
