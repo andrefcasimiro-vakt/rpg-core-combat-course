@@ -24,8 +24,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 987e2b07c3f8afa4f8826475e0e09d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  patrolSpeedFraction: 0.2
   chaseDistance: 5
   suspicionTime: 5
+  patrolPath: {fileID: 0}
+  waypointTolerance: 1
+  waypointDwellTime: 3
 --- !u!1001 &3462311686764265817
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98,6 +102,33 @@ PrefabInstance:
       propertyPath: m_Speed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7115638487202413835, guid: ed6d33a4c007e6a48a8d57b9ee71f7ed,
+        type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 216f02dd5912a564b9f861685e9de8d9,
+        type: 2}
+    - target: {fileID: 7115638487202413835, guid: ed6d33a4c007e6a48a8d57b9ee71f7ed,
+        type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 8060930427468481827}
+    - target: {fileID: 7115638487202413835, guid: ed6d33a4c007e6a48a8d57b9ee71f7ed,
+        type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 216f02dd5912a564b9f861685e9de8d9,
+        type: 2}
+    - target: {fileID: 7115638487202413835, guid: ed6d33a4c007e6a48a8d57b9ee71f7ed,
+        type: 3}
+      propertyPath: rightHandTransform
+      value: 
+      objectReference: {fileID: 8060930427468481827}
+    - target: {fileID: 7115638487202413835, guid: ed6d33a4c007e6a48a8d57b9ee71f7ed,
+        type: 3}
+      propertyPath: leftHandTransform
+      value: 
+      objectReference: {fileID: 8060930427468424523}
     - target: {fileID: 7115638487240122228, guid: ed6d33a4c007e6a48a8d57b9ee71f7ed,
         type: 3}
       propertyPath: m_IsActive
@@ -174,3 +205,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+--- !u!4 &8060930427468424523 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 403948, guid: 679ff741e12a7e740819ede24a7000b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 8060930427468287143}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8060930427468481827 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 461188, guid: 679ff741e12a7e740819ede24a7000b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 8060930427468287143}
+  m_PrefabAsset: {fileID: 0}
