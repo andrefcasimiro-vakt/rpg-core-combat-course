@@ -1842,6 +1842,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fireball Pickup
       objectReference: {fileID: 0}
+    - target: {fileID: 5027306233348755238, guid: f5c8cad5ca863974783914aa31c940f7,
+        type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 210843576dff0b34693295c9125fac06,
+        type: 2}
     - target: {fileID: 7465835937930024567, guid: f5c8cad5ca863974783914aa31c940f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6427,7 +6433,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478668948}
-  m_LocalRotation: {x: 0.29543716, y: 0.17294167, z: -0.054470662, w: 0.9379984}
+  m_LocalRotation: {x: -0.00049539463, y: 0.99574155, z: -0.005359935, w: -0.09203189}
   m_LocalPosition: {x: 7.4233394, y: 3.9339333, z: -45.369637}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12196,7 +12202,7 @@ Transform:
   - {fileID: 63351433}
   - {fileID: 1807887736}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1056487024
 PrefabInstance:
@@ -14221,7 +14227,7 @@ PrefabInstance:
     - target: {fileID: 2728516321659881979, guid: 3fbf0006155f5fa419556609b49d3349,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2728516321659881979, guid: 3fbf0006155f5fa419556609b49d3349,
         type: 3}
@@ -18049,7 +18055,7 @@ PrefabInstance:
     - target: {fileID: 1473901308178808720, guid: 641bc38ea912c2642b5f6853d2834e28,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1473901308178808720, guid: 641bc38ea912c2642b5f6853d2834e28,
         type: 3}
@@ -23340,7 +23346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 379634759}
-  m_PathPosition: 20
+  m_PathPosition: -1
   m_PositionUnits: 1
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -23604,7 +23610,7 @@ PrefabInstance:
     - target: {fileID: 2556065671109587151, guid: e4da76d3973d30b4aa7a3d899df8cb80,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2556065671109587151, guid: e4da76d3973d30b4aa7a3d899df8cb80,
         type: 3}
@@ -23678,7 +23684,7 @@ PrefabInstance:
     - target: {fileID: 5257710442332518890, guid: 2cd07d0ab6940b449836b71101066fea,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5257710442332518890, guid: 2cd07d0ab6940b449836b71101066fea,
         type: 3}

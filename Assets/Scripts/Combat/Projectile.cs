@@ -13,7 +13,11 @@ namespace RPG.Combat {
         [SerializeField] float durationLifetime = 1f;
         float durationTimer = 0f;
 
+        [Header("Homing Missile Options")]
         [SerializeField] bool followsTargetEveryFrame = false;
+
+        [Header("Graphical Settings")]
+        [SerializeField] GameObject hitEffect = null;
 
         Health targetHealth;
 
@@ -21,6 +25,7 @@ namespace RPG.Combat {
         float damage = 0;
 
         private Vector3 targetPosition = Vector3.zero;
+
 
         private void Start()
         {
@@ -81,6 +86,11 @@ namespace RPG.Combat {
             if (targetHealth.IsDead())
             {
                 return;
+            }
+
+            if (hitEffect != null)
+            {
+                Instantiate(hitEffect, GetAimLocation(), transform.rotation);
             }
 
             targetHealth.TakeDamage(damage);
