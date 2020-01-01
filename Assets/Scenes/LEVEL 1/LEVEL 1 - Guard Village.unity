@@ -23725,6 +23725,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 452962678849782978, guid: 5de7af9994cd9974bab276407e364797,
+        type: 3}
+      propertyPath: defaultWeaponName
+      value: Sword
+      objectReference: {fileID: 0}
     - target: {fileID: 452962678849782989, guid: 5de7af9994cd9974bab276407e364797,
         type: 3}
       propertyPath: m_LocalPosition.y

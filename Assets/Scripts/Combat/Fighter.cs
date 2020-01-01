@@ -1,21 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using RPG.Core;
 using RPG.Movement;
-using System;
+using RPG.Saving;
 
 namespace RPG.Combat {
-    public class Fighter : MonoBehaviour, IAction
+    public class Fighter : MonoBehaviour, IAction, ISaveable
     {
         [SerializeField] float timeBetweenAttacks = 1f;
         float timeSinceLastAttack = Mathf.Infinity;
 
         [Header("Weapons")]
-        [SerializeField] Weapon defaultWeapon = null;
         [SerializeField] Transform leftHandTransform = null;
         [SerializeField] Transform rightHandTransform = null;
         Weapon currentWeapon = null;
+
+        [Header("Weapons Resources Settings")]
+        [SerializeField] string defaultWeaponName = "Unarmed";
 
         Animator animator;
         Transform target;
@@ -29,8 +29,9 @@ namespace RPG.Combat {
             mover = GetComponent<Mover>();
             animator = GetComponent<Animator>();
 
-            // By default equip the default weapon
-            EquipWeapon(defaultWeapon);
+            if (currentWeapon == null) {
+                LoadAndEquipWeapon(defaultWeaponName);
+            }
         }
 
         void Update()
@@ -107,14 +108,6 @@ namespace RPG.Combat {
             mover.Cancel();
         }
 
-        public void EquipWeapon(Weapon weapon)
-        {
-            currentWeapon = weapon;
-            weapon.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
-        }
-
-
-
         // Animation Event
         void Hit()
         {
@@ -138,6 +131,34 @@ namespace RPG.Combat {
             Hit();
         }
 
+
+        // EQUIPMENT
+        public void EquipWeapon(Weapon weapon)
+        {
+            currentWeapon = weapon;
+            weapon.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
+        }
+
+        void LoadAndEquipWeapon(string weaponName)
+        {
+            Weapon weapon = Resources.Load<Weapon>(weaponName);
+
+            // By default equip the default weapon
+            EquipWeapon(weapon);
+        }
+
+        // SAVE METHODS
+        public object CaptureState()
+        {
+            return currentWeapon.name;
+        }
+
+        public void RestoreState(object state)
+        {
+            string weaponName = (string)state;
+
+            LoadAndEquipWeapon(weaponName);
+        }
     }
 
 }
